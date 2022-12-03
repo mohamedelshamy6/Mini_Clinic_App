@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "902296618277",
+    "project_id": "mini-hospital-15f8e",
+    "storage_bucket": "mini-hospital-15f8e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:902296618277:android:4a405013a05d5a626a46cc",
+        "android_client_info": {
+          "package_name": "com.example.mini_hospital"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "902296618277-jkeg5f30p1rlaq01mupgio6lv23dmplp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mini_hospital",
+            "certificate_hash": "efa7589db7215d17dc9d36198d18de9b5f0d70c7"
+          }
+        },
+        {
+          "client_id": "902296618277-vjh2fgjvfttdkevcueke37265vbr4ajk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABBKyOa3LqBu9p4vGJHEPVQGc_JdbncOQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "902296618277-vjh2fgjvfttdkevcueke37265vbr4ajk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
