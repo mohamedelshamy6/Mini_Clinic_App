@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mini_hospital/ui/Screens/login.dart';
@@ -11,8 +12,16 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  FirebaseMessaging firebaseMessaging = FirebaseMessaging.instance;
+
   @override
   void initState() {
+    firebaseMessaging.getToken().then((value) {
+      print('--------------------');
+      print(value);
+      print('--------------------');
+
+    });
     Timer(const Duration(seconds: 5), () {
       Navigator.pushReplacement(
           context,
