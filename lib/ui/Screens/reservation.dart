@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:mini_hospital/ui/Screens/filtration.dart';
 import 'package:mini_hospital/view_models/patients_view_model.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class ReservationScreen extends StatelessWidget {
   const ReservationScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.watch<PatientsViewModel>();
+    DateTime? dateValue=viewModel.dateValue;
     return Scaffold(
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () async {
+              await viewModel.setDate(context);
+            },
             icon: Image.asset(
               'images/vFilter.png',
               color: Colors.white,
@@ -24,10 +30,11 @@ class ReservationScreen extends StatelessWidget {
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
       ),
-      body: ChangeNotifierProvider<PatientsViewModel>(
-        builder: (context, child) => const MyBody(),
-        create: (context) => PatientsViewModel()..getAllPatients(),
-      ),
+      body: dateValue == null
+          ? const MyBody()
+          : Filtration(
+              dateValue: DateFormat('dd/MM/yyyy').format(dateValue),
+            ),
     );
   }
 }

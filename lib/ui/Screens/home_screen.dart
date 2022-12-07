@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mini_hospital/ui/Screens/reservetion.dart';
+import 'package:mini_hospital/ui/Screens/reservation.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
