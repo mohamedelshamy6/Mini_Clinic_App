@@ -24,7 +24,7 @@ class HomeScreen extends StatelessWidget {
                     child: Card(
                       elevation: 10,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadiusDirectional.circular(15),
+                        borderRadius: BorderRadius.circular(15),
                       ),
                       child: Container(
                         decoration: BoxDecoration(

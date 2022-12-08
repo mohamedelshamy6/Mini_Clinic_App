@@ -14,6 +14,7 @@ class _LoginState extends State<Login> {
   bool? isVisible;
   FirebaseAuth auth = FirebaseAuth.instance;
   GoogleSignIn googleSignIn = GoogleSignIn();
+  static GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -31,7 +32,6 @@ class _LoginState extends State<Login> {
       borderRadius: BorderRadius.circular(15),
     );
     String? email, password;
-    var formKey = GlobalKey<FormState>();
 
     return Scaffold(
       body: Container(
