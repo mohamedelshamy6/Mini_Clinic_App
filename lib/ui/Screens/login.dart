@@ -1,7 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:mini_hospital/ui/Screens/home_screen.dart';
+
+import '../widgets/custom_button.dart';
+import '../widgets/custom_text_form_field.dart';
+import '../widgets/google_login_custom_button.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -15,6 +18,8 @@ class _LoginState extends State<Login> {
   FirebaseAuth auth = FirebaseAuth.instance;
   GoogleSignIn googleSignIn = GoogleSignIn();
   static GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passController = TextEditingController();
 
   @override
   void initState() {
@@ -31,7 +36,6 @@ class _LoginState extends State<Login> {
       ),
       borderRadius: BorderRadius.circular(15),
     );
-    String? email, password;
 
     return Scaffold(
       body: Container(
@@ -85,31 +89,10 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                       const SizedBox(height: 5),
-                      TextFormField(
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Email must be full';
-                          }
-                          if (value.contains('@') == false) {
-                            return 'Email must have @';
-                          }
-                          return null;
-                        },
-                        onChanged: (value) {
-                          email = value;
-                        },
-                        decoration: InputDecoration(
-                          prefixIcon: const Icon(
-                            Icons.alternate_email,
-                            color: Colors.black,
-                          ),
-                          enabledBorder: borderStyle,
-                          errorBorder: borderStyle,
-                          hintText: 'zzzzz@gmail.com',
-                          border: borderStyle,
-                        ),
-                        keyboardType: TextInputType.emailAddress,
-                      ),
+                      CustomTextFormField(
+                          title: 'email',
+                          controller: emailController,
+                          borderStyle: borderStyle),
                       const SizedBox(height: 25),
                       const Text(
                         'Password',
@@ -119,76 +102,16 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                       const SizedBox(height: 5),
-                      TextFormField(
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Password must be full';
-                          }
-                          if (value.length < 8) {
-                            return 'Password must be at least 8 letters or numbers';
-                          }
-                          return null;
-                        },
-                        onChanged: (value) {
-                          password = value;
-                        },
-                        obscureText: !isVisible!,
-                        keyboardType: TextInputType.visiblePassword,
-                        decoration: InputDecoration(
-                          prefixIcon: const Icon(
-                            Icons.key,
-                            color: Colors.black,
-                          ),
-                          suffixIcon: IconButton(
-                            icon: Icon(isVisible!
-                                ? Icons.visibility
-                                : Icons.visibility_off),
-                            onPressed: () {
-                              setState(() {
-                                isVisible = !isVisible!;
-                              });
-                            },
-                            color: Colors.black,
-                          ),
-                          enabledBorder: borderStyle,
-                          errorBorder: borderStyle,
-                          hintText: '********',
-                          border: borderStyle,
-                        ),
-                      ),
+                      CustomTextFormField(
+                          title: 'password',
+                          controller: passController,
+                          borderStyle: borderStyle),
                       const SizedBox(height: 25),
-                      Center(
-                        child: SizedBox(
-                          width: double.infinity,
-                          height: 50,
-                          child: MaterialButton(
-                            color: Colors.blue[800],
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                            onPressed: () {
-                              if (formKey.currentState!.validate()) {}
-                              auth
-                                  .signInWithEmailAndPassword(
-                                      email: email!, password: password!)
-                                  .then((value) {
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const HomeScreen(),
-                                    ));
-                              });
-                            },
-                            child: const Text(
-                              'Login',
-                              style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
+                      CustomLoginButton(
+                          formKey: formKey,
+                          auth: auth,
+                          emailController: emailController,
+                          passController: passController),
                       const SizedBox(height: 15),
                       Row(
                         children: const [
@@ -217,46 +140,7 @@ class _LoginState extends State<Login> {
                         ],
                       ),
                       const SizedBox(height: 15),
-                      Center(
-                        child: SizedBox(
-                          width: double.infinity,
-                          height: 50,
-                          child: MaterialButton(
-                            shape: RoundedRectangleBorder(
-                              side: const BorderSide(
-                                width: 1,
-                                color: Colors.black,
-                              ),
-                              borderRadius: BorderRadius.circular(30),
-                            ),
-                            onPressed: () {
-                              signInWithGoogle()
-                                  .then((value) => Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            const HomeScreen(),
-                                      )));
-                            },
-                            child: Row(
-                              children: [
-                                SizedBox(
-                                  width: 50,
-                                  child: Image.asset('images/google.png'),
-                                ),
-                                const SizedBox(width: 75),
-                                const Text(
-                                  'Google',
-                                  style: TextStyle(
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
+                      GoogleLoginCustomButton(),
                     ],
                   ),
                 ),
@@ -266,15 +150,5 @@ class _LoginState extends State<Login> {
         ),
       ),
     );
-  }
-
-  Future<UserCredential> signInWithGoogle() async {
-    GoogleSignInAccount? googleSignInAccount = await GoogleSignIn().signIn();
-    GoogleSignInAuthentication? googleSignInAuthentication =
-        await googleSignInAccount?.authentication;
-    AuthCredential authCredential = GoogleAuthProvider.credential(
-        accessToken: googleSignInAuthentication?.accessToken,
-        idToken: googleSignInAuthentication?.idToken);
-    return await auth.signInWithCredential(authCredential);
   }
 }
