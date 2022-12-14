@@ -48,6 +48,7 @@ class _SplashScreenState extends State<SplashScreen> {
       DateTime date = i.toDate().subtract(const Duration(minutes: 15));
       NotificationApi().showScheduledNotification(
           scheduleDate: date,
+
           title: 'Patient reminder',
           body: 'You have an appointment in 15 minutes');
     }

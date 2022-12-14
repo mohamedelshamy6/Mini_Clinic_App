@@ -4,6 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mini_hospital/ui/Screens/login.dart';
 import 'package:mini_hospital/ui/Screens/reservation.dart';
 import '../widgets/custom_card.dart';
+import 'chats/screens/view.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -61,7 +62,7 @@ class HomeScreen extends StatelessWidget {
                 //chat screen (not finished).
                 CustomCard(
                   text: 'chat',
-                  page: Scaffold(),
+                  page: ChatHome(),
                 ),
               ],
             ),
