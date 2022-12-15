@@ -186,7 +186,7 @@ class _ChatRoomState extends State<ChatRoom> {
                             borderRadius:
                                 const BorderRadius.all(Radius.circular(6)),
                             child: Image.asset(
-                              'assets/images/large.png',
+                              'images/large.png',
                               fit: BoxFit.cover,
                               height: 100,
                               width: MediaQuery.of(context).size.width * .6,
@@ -202,7 +202,7 @@ class _ChatRoomState extends State<ChatRoom> {
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(6)),
                                     child: Image.asset(
-                                      'assets/images/med.png',
+                                      'images/med.png',
                                       height: 100,
                                       fit: BoxFit.cover,
                                     ),
@@ -214,7 +214,7 @@ class _ChatRoomState extends State<ChatRoom> {
                                     borderRadius: const BorderRadius.all(
                                         Radius.circular(6)),
                                     child: Image.asset(
-                                      'assets/images/med1.png',
+                                      'images/med1.png',
                                       height: 100,
                                       fit: BoxFit.cover,
                                     ),

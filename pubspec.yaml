@@ -31,6 +31,7 @@ flutter:
   uses-material-design: true
   assets:
     - images/
+    - assets/animation/
     - images/google.png
     - images/login.jpg
     - images/vFilter.png
