@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -52,13 +53,20 @@ class GoogleLoginCustomButton extends StatelessWidget {
     );
   }
 
-  Future<UserCredential> signInWithGoogle() async {
-    GoogleSignInAccount? googleSignInAccount = await GoogleSignIn().signIn();
-    GoogleSignInAuthentication? googleSignInAuthentication =
-        await googleSignInAccount?.authentication;
-    AuthCredential authCredential = GoogleAuthProvider.credential(
-        accessToken: googleSignInAuthentication?.accessToken,
-        idToken: googleSignInAuthentication?.idToken);
-    return await auth.signInWithCredential(authCredential);
+   Future<UserCredential> signInWithGoogle() async {
+     GoogleSignInAccount? googleSignInAccount = await GoogleSignIn().signIn();
+     GoogleSignInAuthentication? googleSignInAuthentication =
+     await googleSignInAccount?.authentication;
+     AuthCredential authCredential = GoogleAuthProvider.credential(
+         accessToken: googleSignInAuthentication?.accessToken,
+         idToken: googleSignInAuthentication?.idToken);
+     return await auth.signInWithCredential(authCredential);
+   }
+
+
+
+
+
+
   }
-}
+
