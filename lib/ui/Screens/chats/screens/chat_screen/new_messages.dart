@@ -1,7 +1,11 @@
+import 'dart:io';
+import 'package:image_picker/image_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
 class NewMessages extends StatefulWidget {
+
   const NewMessages({Key? key}) : super(key: key);
 
   @override
@@ -11,7 +15,26 @@ class NewMessages extends StatefulWidget {
 class _NewMessagesState extends State<NewMessages> {
   final _controller = TextEditingController();
   String _enteredMessage = '';
-  String _enteredMessage1 = '';
+  File? _enteredImage ;
+
+  final ImagePicker _picker = ImagePicker();
+
+  void _pickImage(ImageSource src)async
+  {
+    final pickedImageFile = await _picker.pickImage(source: src,imageQuality: 50,maxWidth: 150);
+
+    if(pickedImageFile != null)
+    {
+      setState(() {
+        _enteredImage = File(pickedImageFile.path);
+      });
+
+    }
+    else
+    {
+      print('No Image Selected');
+    }
+  }
   _sendMessage() async{
     FocusScope.of(context).unfocus();
     final user =  FirebaseAuth.instance.currentUser;
@@ -26,7 +49,7 @@ class _NewMessagesState extends State<NewMessages> {
       'username' : 'ahmed',
       //'username' : userData['username'],
       'userId':user!.uid,
-      'userImage':'ljihuiguyy'
+      'userImage':'kkkk'
       //'userImage':userData['image_Url']
     });
 
@@ -53,9 +76,11 @@ class _NewMessagesState extends State<NewMessages> {
                 },
               )
           ),
-          IconButton(color: Theme.of(context).primaryColor,icon: Icon(Icons.send),onPressed: _enteredMessage.trim().isEmpty?null:_sendMessage)
+          IconButton(color: Theme.of(context).primaryColor,icon: Icon(Icons.camera_alt_outlined),onPressed:()=>_pickImage(ImageSource.camera))
+          ,IconButton(color: Theme.of(context).primaryColor,icon: Icon(Icons.send),onPressed: _enteredMessage.trim().isEmpty?null:_sendMessage)
         ],
       ),
     );
   }
 }
+
