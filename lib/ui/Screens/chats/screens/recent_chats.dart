@@ -37,17 +37,17 @@ class RecentChats extends StatelessWidget {
         child: Column(
             // padding: const EdgeInsets.only(bottom: 60),
             children: [
-              Container(
-                height: MediaQueryHelper.sizeFromHeight(context, 10),
-                color: AppColor.white,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: ChatCubit.get(context)
-                      .tabs
-                      .map((e) => FilterCard(tab: e))
-                      .toList(),
-                ),
-              ),
+              // Container(
+              //   height: MediaQueryHelper.sizeFromHeight(context, 10),
+              //   color: AppColor.white,
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+              //     children: ChatCubit.get(context)
+              //         .tabs
+              //         .map((e) => FilterCard(tab: e))
+              //         .toList(),
+              //   ),
+              // ),
               Container(
                 height: MediaQueryHelper.sizeFromHeight(context, 1.2),
                 child: ListView.builder(

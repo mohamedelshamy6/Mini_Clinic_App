@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_hospital/style/costraints.dart';
 
 class UserDetailsListView extends StatelessWidget {
   const UserDetailsListView({
@@ -36,13 +37,22 @@ class UserDetailsListView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CircleAvatar(
-                    radius: 50,
-                    backgroundColor: Colors.white70,
-                    child: Icon(
-                      Icons.person,
-                      color: const Color(0xff1E3163).withOpacity(0.85),
-                      size: 50,
+                  SizedBox(
+                    height: MediaQueryHelper.sizeFromHeight(context, 3.5),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        CircleAvatar(
+                          radius: 50,
+                          backgroundColor: Colors.white70,
+                          child: Icon(
+                            Icons.person,
+                            color: const Color(0xff1E3163).withOpacity(0.85),
+                            size: 50,
+                          ),
+                        ),
+                        TextButton(onPressed: (){}, child: Text("Write a prescription"),)
+                      ],
                     ),
                   ),
                   const SizedBox(width: 15),
@@ -82,6 +92,7 @@ class UserDetailsListView extends StatelessWidget {
                                   const IconThemeData(color: Colors.white70),
                               dividerColor: Colors.transparent),
                           child: ExpansionTile(
+
                             iconColor: Colors.white70,
                             collapsedIconColor: Colors.white70,
                             tilePadding: EdgeInsets.zero,
