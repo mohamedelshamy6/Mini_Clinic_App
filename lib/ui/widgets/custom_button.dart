@@ -1,21 +1,24 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../Screens/home_screen.dart';
 
 class CustomLoginButton extends StatelessWidget {
-  const CustomLoginButton({
-    Key? key,
-    required this.formKey,
-    required this.auth,
-    required this.emailController,
-    required this.passController,
-  }) : super(key: key);
+   CustomLoginButton({
+
+     required this.formKey,
+     required this.auth,
+     required this.emailController,
+     required this.passController,
+   }
+  ) ;
 
   final GlobalKey<FormState> formKey;
   final FirebaseAuth auth;
   final TextEditingController emailController;
   final TextEditingController passController;
+
 
   @override
   Widget build(BuildContext context) {
@@ -28,19 +31,22 @@ class CustomLoginButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           ),
-          onPressed: () {
+          onPressed: () async {
             if (formKey.currentState!.validate()) {}
-            auth
-                .signInWithEmailAndPassword(
-                email: emailController.text,
-                password: passController.text)
-                .then((value) {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const HomeScreen(),
-                  ));
-            });
+
+              auth
+                  .signInWithEmailAndPassword(
+                  email: emailController.text,
+                  password: passController.text)
+                  .then((value) {
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const HomeScreen(),
+                    ));
+              });
+
+
           },
           child: const Text(
             'Login',

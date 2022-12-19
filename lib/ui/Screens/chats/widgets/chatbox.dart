@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_hospital/ui/Screens/chats/screens/chat_screen/chat_screen.dart';
 
 
 import '../../../../style/colors.dart';
@@ -24,7 +25,7 @@ class ChatBox extends StatelessWidget {
       child: ListTile(
         onTap: () {
           Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => const ChatRoom()));
+              .push(MaterialPageRoute(builder: (context) => const ChatScreen()));
         },
         tileColor: isnew?AppColor.focuscolur:AppColor.card,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),

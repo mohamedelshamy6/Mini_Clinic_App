@@ -20,7 +20,7 @@ class ChatHome extends StatelessWidget {
       create: (_) => ChatCubit(),
       child: SlidingUpPanel(
         maxHeight: MediaQuery.of(context).size.height,
-        minHeight: MediaQuery.of(context).size.height / 1.9,
+        minHeight: MediaQuery.of(context).size.height / 1.6,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(16),
           topRight: Radius.circular(16),
@@ -28,6 +28,7 @@ class ChatHome extends StatelessWidget {
         body: Scaffold(
           backgroundColor: AppColor.scaffoldbackground,
           appBar: AppBar(
+            iconTheme: IconThemeData(color: Colors.black),
             backgroundColor: AppColor.scaffoldbackground,
             elevation: 0,
             title: const Text('Pinned Chats',
