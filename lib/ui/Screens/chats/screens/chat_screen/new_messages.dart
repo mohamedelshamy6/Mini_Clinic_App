@@ -1,8 +1,10 @@
 import 'dart:io';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:uuid/uuid.dart';
 
 class NewMessages extends StatefulWidget {
   const NewMessages({Key? key}) : super(key: key);
@@ -14,22 +16,60 @@ class NewMessages extends StatefulWidget {
 class _NewMessagesState extends State<NewMessages> {
   final _controller = TextEditingController();
   String _enteredMessage = '';
-  File? _enteredImage;
+  File? imageFile;
 
-  final ImagePicker _picker = ImagePicker();
 
-  void _pickImage(ImageSource src) async {
-    final pickedImageFile =
-        await _picker.pickImage(source: src, imageQuality: 50, maxWidth: 150);
 
-    if (pickedImageFile != null) {
-      setState(() {
-        _enteredImage = File(pickedImageFile.path);
-      });
-    } else {
-      print('No Image Selected');
+  Future getImage() async {
+    ImagePicker _picker = ImagePicker();
+
+    await _picker.pickImage(source: ImageSource.camera).then((xFile) {
+      if (xFile != null) {
+        imageFile = File(xFile.path);
+        uploadImage();
+      }
+    });
+  }
+
+
+  Future uploadImage() async {
+    String fileName = Uuid().v1();
+    int status = 1;
+
+    await FirebaseFirestore.instance
+        .collection('chat').doc(fileName)
+
+        .set({
+      "userId":FirebaseAuth.instance.currentUser!.uid,
+      "text": "",
+      "type": "img",
+     // 'username': FirebaseAuth.instance.currentUser!.displayName,
+      "createdAt": FieldValue.serverTimestamp(),
+    });
+
+    var ref =
+    FirebaseStorage.instance.ref().child('images').child("$fileName.jpg");
+
+    var uploadTask = await ref.putFile(imageFile!).catchError((error) async {
+      await FirebaseFirestore.instance
+          .collection('chat')
+          .doc(fileName)
+          .delete();
+
+      status = 0;
+    });
+
+    if (status == 1) {
+      String imageUrl = await uploadTask.ref.getDownloadURL();
+
+      await FirebaseFirestore.instance
+          .collection('chat').doc(fileName).update({"text": imageUrl});
+
+      print(imageUrl);
     }
   }
+
+
 
   _sendMessage() async {
     FocusScope.of(context).unfocus();
@@ -41,10 +81,11 @@ class _NewMessagesState extends State<NewMessages> {
     FirebaseFirestore.instance.collection('chat').add({
       'text': _enteredMessage,
       'createdAt': Timestamp.now(),
-      'username': 'ahmed',
+     //'username': user?.displayName,
+      'type':'text',
       //'username' : userData['username'],
       'userId': user!.uid,
-      'userImage': 'kkkk'
+     // 'userImage': 'kkkk'
       //'userImage':userData['image_Url']
     });
 
@@ -71,7 +112,7 @@ class _NewMessagesState extends State<NewMessages> {
           IconButton(
               color: Theme.of(context).primaryColor,
               icon: Icon(Icons.camera_alt_outlined),
-              onPressed: () => _pickImage(ImageSource.camera)),
+              onPressed: () => getImage()),
           IconButton(
               color: Theme.of(context).primaryColor,
               icon: Icon(Icons.send),

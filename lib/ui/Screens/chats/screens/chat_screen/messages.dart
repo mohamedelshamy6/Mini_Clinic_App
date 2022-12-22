@@ -13,7 +13,7 @@ class Messages extends StatelessWidget {
     return StreamBuilder<dynamic>(
         stream: FirebaseFirestore.instance
             .collection('chat')
-            .orderBy('createdAt', descending: false)
+            .orderBy('createdAt', descending: true)
             .snapshots(),
         builder: (context, snapShot) {
           if (snapShot.connectionState == ConnectionState.waiting) {
@@ -25,11 +25,11 @@ class Messages extends StatelessWidget {
               reverse: true,
               itemCount: docs.length,
               itemBuilder: (context, index) => MessageBubble(
-                    docs[index]['text'],
-                    docs[index]['username'],
-                    docs[index]['userImage'],
-                    docs[index]['userId'] == user!.uid,
+
                     key: ValueKey(docs[index]),
+                    isMe: docs[index]['userId'] == user!.uid,
+                    type: docs[index]['type'],
+                    message: docs[index]['text'],
                   ));
         });
   }
