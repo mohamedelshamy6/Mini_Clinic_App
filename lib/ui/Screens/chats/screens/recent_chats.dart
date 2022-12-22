@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../../../style/colors.dart';
 import '../../../../style/costraints.dart';
-import '../cubit/cubit/cubit.dart';
+
 import '../models/recent_model.dart';
 import '../widgets/chatbox.dart';
-import '../widgets/filter_card.dart';
+
 
 class RecentChats extends StatelessWidget {
   const RecentChats({Key? key}) : super(key: key);

@@ -65,22 +65,27 @@ class _SplashScreenState extends State<SplashScreen> {
     }
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(0, 150, 0, 35),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Lottie.asset('images/logo.json'),
-              const Text(
-                'Loading ... ',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: MediaQuery.of(context).size.height / 5),
-              const Text(
-                'Sameh Elbadry',
-                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-              ),
-            ],
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          child: Padding(
+            padding:const EdgeInsets.fromLTRB(0, 150, 0, 35),
+            child: Column(
+
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+
+                Lottie.asset('images/logo.json',width: 200,height: 200),
+                const Text(
+                  'Loading ... ',
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: MediaQuery.of(context).size.height / 5),
+                const Text(
+                  'Sameh Elbadry',
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
           ),
         ),
       ),

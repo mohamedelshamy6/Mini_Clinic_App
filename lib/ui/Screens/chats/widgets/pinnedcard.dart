@@ -39,12 +39,12 @@ class PinnedCard extends StatelessWidget {
                 ? Container(
                     width: 7,
                     height: 7,
-                    margin: EdgeInsets.all(5),
+                    margin: const EdgeInsets.all(5),
                     decoration: BoxDecoration(
                         color: AppColor.mainColor,
                         borderRadius: BorderRadius.circular(30)),
                   )
-                : SizedBox(),
+                : const SizedBox(),
             Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Center(
                 child: ListTile(
