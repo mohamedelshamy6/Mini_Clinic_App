@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../../../style/colors.dart';
 import '../../../../style/costraints.dart';
-import '../cubit/cubit/cubit.dart';
+
 import '../models/recent_model.dart';
 import '../widgets/chatbox.dart';
-import '../widgets/filter_card.dart';
+
 
 class RecentChats extends StatelessWidget {
   const RecentChats({Key? key}) : super(key: key);
@@ -13,8 +13,9 @@ class RecentChats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
+      //backgroundColor: Colors.transparent,
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.black),
         backgroundColor: Colors.white,
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
@@ -37,17 +38,7 @@ class RecentChats extends StatelessWidget {
         child: Column(
             // padding: const EdgeInsets.only(bottom: 60),
             children: [
-              // Container(
-              //   height: MediaQueryHelper.sizeFromHeight(context, 10),
-              //   color: AppColor.white,
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-              //     children: ChatCubit.get(context)
-              //         .tabs
-              //         .map((e) => FilterCard(tab: e))
-              //         .toList(),
-              //   ),
-              // ),
+
               Container(
                 height: MediaQueryHelper.sizeFromHeight(context, 1.2),
                 child: ListView.builder(

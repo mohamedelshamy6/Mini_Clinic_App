@@ -3,6 +3,7 @@ import 'package:mini_hospital/models/patients_model.dart';
 import 'package:mini_hospital/repositories/patients_repository.dart';
 
 class PatientsViewModel with ChangeNotifier {
+
   List<PatientsModel>? patient;
   DateTime? dateTime, dateValue;
 
@@ -12,6 +13,8 @@ class PatientsViewModel with ChangeNotifier {
     notifyListeners();
     return patient;
   }
+
+
 
   setDate(context) async {
     dateTime = await showDatePicker(
