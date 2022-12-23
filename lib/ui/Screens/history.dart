@@ -92,30 +92,37 @@ class HistoryView extends StatelessWidget {
                         )
                       : Expanded(
                           child: Container(
-                          width: MediaQuery.of(context).size.width,
-                          child:
-                              ListView.builder(itemBuilder: (context, index) {
-                            return Material(
-                              elevation: 15,
-                              borderRadius: BorderRadius.circular(15),
-                              child: Container(
-                                height: 100,
-                                width: MediaQueryHelper.sizeFromWidth(
-                                    context, 1.08),
-                                decoration: BoxDecoration(
-                                    color: Colors.blue.withOpacity(0.5),
-                                    borderRadius: BorderRadius.circular(15),
-                                    border: Border.all(
-                                      color: Colors.blue,
-                                      width: 2,
-                                    )),
-                                padding: const EdgeInsets.all(5),
-                                child: Text('${addpres[index]}',
-                                    style: AppTextStyles.w700),
-                              ),
-                            );
-                          }),
-                        ))),
+                            width: MediaQuery.of(context).size.width,
+                            height: 300,
+                            child: ListView.builder(
+                                itemCount: addpres.length,
+                                itemBuilder: (context, index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(2.0),
+                                    child: Material(
+                                      elevation: 15,
+                                      borderRadius: BorderRadius.circular(15),
+                                      child: Container(
+                                        height: 100,
+                                        width: MediaQueryHelper.sizeFromWidth(
+                                            context, 1.08),
+                                        decoration: BoxDecoration(
+                                            color: Colors.blue.withOpacity(0.5),
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                            border: Border.all(
+                                              color: Colors.blue,
+                                              width: 2,
+                                            )),
+                                        padding: const EdgeInsets.all(5),
+                                        child: Text(addpres[index],
+                                            style: AppTextStyles.w700),
+                                      ),
+                                    ),
+                                  );
+                                }),
+                          ),
+                        )),
             )
           ],
         ),

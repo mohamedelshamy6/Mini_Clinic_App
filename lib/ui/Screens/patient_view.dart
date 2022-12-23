@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mini_hospital/models/patients_model.dart';
 import 'package:mini_hospital/style/text_style.dart';
 import 'package:mini_hospital/view_models/single_patient_view_model.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +18,8 @@ class PatientView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.black),
-        title: const Text("Sameh"),
+        title:  Text("${singlePatient.name}"),
+
         actions: [
           IconButton(
               onPressed: () {
