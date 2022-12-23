@@ -78,29 +78,40 @@ class PatientView extends StatelessWidget {
               padding: EdgeInsets.all(8.0),
               child: Text("prescriptions", style: AppTextStyles.largefont),
             ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  child: Material(
-                    elevation: 15,
-                    borderRadius: BorderRadius.circular(15),
-                    child: Container(
-                      height: 100,
-                      width: MediaQueryHelper.sizeFromWidth(context, 1.08),
-                      decoration: BoxDecoration(
-                          color: Colors.blue.withOpacity(0.5),
-                          borderRadius: BorderRadius.circular(15),
-                          border: Border.all(
-                            color: Colors.blue,
-                            width: 2,
-                          )),
-                      padding: const EdgeInsets.all(5),
-                      child: Text('${addpres.last}', style: AppTextStyles.w700),
-                    ),
-                  ),
-                ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 10),
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                child: addpres.isEmpty
+                    ? const Padding(
+                        padding: EdgeInsets.only(top: 20),
+                        child: Text(
+                          "No prescriptions Yet... Add One Now",
+                          style: TextStyle(
+                            color: Colors.red,
+                            fontSize: 20
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      )
+                    : Material(
+                        elevation: 15,
+                        borderRadius: BorderRadius.circular(15),
+                        child: Container(
+                          height: 100,
+                          width: MediaQueryHelper.sizeFromWidth(context, 1.08),
+                          decoration: BoxDecoration(
+                              color: Colors.blue.withOpacity(0.5),
+                              borderRadius: BorderRadius.circular(15),
+                              border: Border.all(
+                                color: Colors.blue,
+                                width: 2,
+                              )),
+                          padding: const EdgeInsets.all(5),
+                          child: Text('${addpres.last}',
+                              style: AppTextStyles.w700),
+                        ),
+                      ),
               ),
             )
           ],
@@ -131,40 +142,61 @@ class AddPrescription extends StatelessWidget {
         actions: const [Icon(Icons.search)],
       ),
       body: SingleChildScrollView(
-          child: Column(
-        children: [
-          const SizedBox(height: 20),
-          TextFormField(
-            maxLines: 10,
-            controller: controller,
-            // initialValue: 'Write here.....',
-            style: AppTextStyles.boldnames,
-            decoration: InputDecoration(
-              labelText: 'Add a prescription',
-              border: OutlineInputBorder(
-                borderSide: const BorderSide(
-                    width: 3, color: Colors.greenAccent), //<-- SEE HERE
-                borderRadius: BorderRadius.circular(50.0),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderSide: const BorderSide(
-                    width: 3, color: Colors.greenAccent), //<-- SEE HERE
-                borderRadius: BorderRadius.circular(50.0),
+          child: SizedBox(
+        height: MediaQuery.of(context).size.height,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                maxLines: 20,
+                controller: controller,
+                // initialValue: 'Write here.....',
+                style: AppTextStyles.boldnames,
+                decoration: InputDecoration(
+                  labelText: 'Add a prescription',
+                  alignLabelWithHint: true,
+                  border: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                        width: 3, color: Colors.greenAccent), //<-- SEE HERE
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: const BorderSide(
+                        width: 3, color: Colors.greenAccent), //<-- SEE HERE
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
+                ),
               ),
             ),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              addpres.add(controller.text);
-              //addpres.clear();
-              print(addpres);
-            },
-            child: const Text(
-              "Save",
-              style: AppTextStyles.w700,
+            ElevatedButton(
+              onPressed: () {
+                addpres.add(controller.text);
+                //addpres.clear();
+                print(addpres);
+              },
+              child: const Text(
+                "Save",
+                style: AppTextStyles.w700,
+              ),
             ),
-          )
-        ],
+            ElevatedButton(
+              onPressed: () {
+                //addpres.add(controller.text);
+                addpres.clear();
+                print(addpres);
+              },
+              child: const Text(
+                "Clear all prescriptions",
+                style: AppTextStyles.w700,
+              ),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+          ],
+        ),
       )),
     );
   }
