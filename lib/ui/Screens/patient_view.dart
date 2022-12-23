@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mini_hospital/style/text_style.dart';
+import 'package:mini_hospital/view_models/single_patient_view_model.dart';
+import 'package:provider/provider.dart';
 
 import '../../style/costraints.dart';
 import 'chats/screens/chat_screen/message_bubble.dart';
@@ -10,6 +12,8 @@ class PatientView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final viewModel = context.read<SinglePatientViewModel>();
+    final singlePatient = viewModel.singlePatient;
     return Scaffold(
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.black),
