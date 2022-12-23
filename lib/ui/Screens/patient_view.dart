@@ -3,6 +3,7 @@ import 'package:mini_hospital/style/text_style.dart';
 
 import '../../style/costraints.dart';
 import 'chats/screens/chat_screen/message_bubble.dart';
+import 'history.dart';
 
 class PatientView extends StatelessWidget {
   const PatientView({Key? key}) : super(key: key);
@@ -14,7 +15,14 @@ class PatientView extends StatelessWidget {
         iconTheme: const IconThemeData(color: Colors.black),
         title: const Text("Sameh"),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.history))
+          IconButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return const HistoryView();
+                }));
+              },
+              icon: const Icon(Icons.history))
         ],
       ),
       body: Padding(
@@ -87,10 +95,7 @@ class PatientView extends StatelessWidget {
                         padding: EdgeInsets.only(top: 20),
                         child: Text(
                           "No prescriptions Yet... Add One Now",
-                          style: TextStyle(
-                            color: Colors.red,
-                            fontSize: 20
-                          ),
+                          style: TextStyle(color: Colors.red, fontSize: 20),
                           textAlign: TextAlign.center,
                         ),
                       )
