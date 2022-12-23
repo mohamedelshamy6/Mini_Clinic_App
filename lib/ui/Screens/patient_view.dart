@@ -17,73 +17,157 @@ class PatientView extends StatelessWidget {
           IconButton(onPressed: () {}, icon: const Icon(Icons.history))
         ],
       ),
-      body: Column(
-        children: [
-          const Text("Description", style: AppTextStyles.largefont),
-          Material(
-            elevation: 15,
-            borderRadius: BorderRadius.circular(15),
-            child: Container(
-              height: 100,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                  color: Colors.blue.withOpacity(0.5),
-                  borderRadius: BorderRadius.circular(15),
-                  border: Border.all(
-                    color: Colors.blue,
-                    width: 2,
-                  )),
-              padding: const EdgeInsets.all(5),
-              child: const Text(
-                  'I have bla bla bla bla bla bla bla bla bla bla bla bla  bla bla bla bla bla bla bla bla bla bla bla bla '),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text("Description", style: AppTextStyles.largefont),
             ),
-          ),
-          Container(
-            height: MediaQueryHelper.sizeFromHeight(context, 5),
-            width: MediaQueryHelper.sizeFromHeight(context, 2),
-            padding: EdgeInsets.symmetric(vertical: 5, horizontal: 5),
-            // alignment: !isMe
-            //     ? Alignment.centerRight
-            //     : Alignment.centerLeft,
-            child: InkWell(
-              onTap: () => Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (_) => const ShowImage(
-                    imageUrl:
-                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnZc4nu61fo87fwxBfVNGokRj1TP8t6IrdEQ&usqp=CAU",
+            Material(
+              elevation: 15,
+              borderRadius: BorderRadius.circular(15),
+              child: Container(
+                height: 100,
+                width: MediaQueryHelper.sizeFromWidth(context, 1.08),
+                decoration: BoxDecoration(
+                    color: Colors.blue.withOpacity(0.5),
+                    // borderRadius: BorderRadius.circular(15),
+                    border: Border.all(
+                      color: Colors.blue,
+                      width: 2,
+                    )),
+                padding: const EdgeInsets.all(5),
+                child: const Text(
+                    style: AppTextStyles.w700,
+                    'I have bla bla bla bla bla bla bla bla bla bla bla bla  bla bla bla bla bla bla bla bla bla bla bla bla '),
+              ),
+            ),
+            Container(
+              height: MediaQueryHelper.sizeFromHeight(context, 5),
+              width: MediaQueryHelper.sizeFromWidth(context, 1),
+              padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+              child: InkWell(
+                onTap: () => Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (_) => const ShowImage(
+                      imageUrl:
+                          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ37TSO0ADP1c41hwUk2lRIWndK0swJyyasNQ&usqp=CAU",
+                    ),
+                  ),
+                ),
+                child: Container(
+                    height: MediaQueryHelper.sizeFromHeight(context, 4),
+                    width: MediaQueryHelper.sizeFromHeight(context, 3.5),
+                    decoration: BoxDecoration(
+                      //shape: BoxShape.rectangle,
+                      border: Border.all(color: Colors.blue, width: 2),
+                      //  borderRadius: BorderRadius.circular(20)
+                    ),
+                    // alignment:
+                    // message != "" ? null : Alignment.center,
+                    child: Image.network(
+                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ37TSO0ADP1c41hwUk2lRIWndK0swJyyasNQ&usqp=CAU",
+                      fit: BoxFit.cover,
+                    )),
+              ),
+            ),
+            const Divider(),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text("prescriptions", style: AppTextStyles.largefont),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  child: Material(
+                    elevation: 15,
+                    borderRadius: BorderRadius.circular(15),
+                    child: Container(
+                      height: 100,
+                      width: MediaQueryHelper.sizeFromWidth(context, 1.08),
+                      decoration: BoxDecoration(
+                          color: Colors.blue.withOpacity(0.5),
+                          borderRadius: BorderRadius.circular(15),
+                          border: Border.all(
+                            color: Colors.blue,
+                            width: 2,
+                          )),
+                      padding: const EdgeInsets.all(5),
+                      child: Text('${addpres.last}', style: AppTextStyles.w700),
+                    ),
                   ),
                 ),
               ),
-              child: Container(
-                  height: MediaQueryHelper.sizeFromHeight(context, 4),
-                  width: MediaQueryHelper.sizeFromHeight(context, 3.5),
-                  decoration: BoxDecoration(border: Border.all()),
-                  // alignment:
-                  // message != "" ? null : Alignment.center,
-                  child: Image.network(
-                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnZc4nu61fo87fwxBfVNGokRj1TP8t6IrdEQ&usqp=CAU",
-                    fit: BoxFit.cover,
-                  )),
-            ),
-          ),
-          const Text("prescriptions", style: AppTextStyles.largefont),
-          Expanded(
-            child: Container(
-              color: Colors.red,
-              width: MediaQuery.of(context).size.width,
-              child: ListView.builder(
-                  itemCount: 20,
-                  itemBuilder: (context, index) {
-                return const Text("data",style: AppTextStyles.largefont,);
-              }),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => AddPrescription()));
+        },
         child: const Icon(Icons.add),
       ),
     );
   }
 }
+
+///add SnackBar is opened when click on floatingActionButton to add prescriptions and save it in list then view it on same screen
+class AddPrescription extends StatelessWidget {
+  AddPrescription({Key? key}) : super(key: key);
+
+  TextEditingController controller = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Add a prescription"),
+        actions: const [Icon(Icons.search)],
+      ),
+      body: SingleChildScrollView(
+          child: Column(
+        children: [
+          const SizedBox(height: 20),
+          TextFormField(
+            maxLines: 10,
+            controller: controller,
+            // initialValue: 'Write here.....',
+            style: AppTextStyles.boldnames,
+            decoration: InputDecoration(
+              labelText: 'Add a prescription',
+              border: OutlineInputBorder(
+                borderSide: const BorderSide(
+                    width: 3, color: Colors.greenAccent), //<-- SEE HERE
+                borderRadius: BorderRadius.circular(50.0),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderSide: const BorderSide(
+                    width: 3, color: Colors.greenAccent), //<-- SEE HERE
+                borderRadius: BorderRadius.circular(50.0),
+              ),
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              addpres.add(controller.text);
+              //addpres.clear();
+              print(addpres);
+            },
+            child: const Text(
+              "Save",
+              style: AppTextStyles.w700,
+            ),
+          )
+        ],
+      )),
+    );
+  }
+}
+
+List<String> addpres = [];
