@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mini_hospital/style/costraints.dart';
+import 'package:mini_hospital/view_models/patients_view_model.dart';
+import 'package:mini_hospital/view_models/single_patient_view_model.dart';
+import 'package:provider/provider.dart';
 
 import '../Screens/patient_view.dart';
 
@@ -18,11 +21,17 @@ class UserDetailsListView extends StatelessWidget {
       itemBuilder: (context, index) {
         var patient = allPatients[index];
         return GestureDetector(
-          onTap: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PatientView()));
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => Provider<SinglePatientViewModel>(
+                          create: (context) =>
+                              SinglePatientViewModel(singlePatient: patient),
+                          child: const PatientView(),
+                        )));
           },
           child: Card(
-
             margin: const EdgeInsets.fromLTRB(15.0, 10.0, 15.0, 10.0),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15),
@@ -58,7 +67,7 @@ class UserDetailsListView extends StatelessWidget {
                               size: 50,
                             ),
                           ),
-                        //  TextButton(onPressed: (){}, child: Text("Write a prescription"),)
+                          //  TextButton(onPressed: (){}, child: Text("Write a prescription"),)
                         ],
                       ),
                     ),
@@ -99,7 +108,6 @@ class UserDetailsListView extends StatelessWidget {
                                     const IconThemeData(color: Colors.white70),
                                 dividerColor: Colors.transparent),
                             child: ExpansionTile(
-
                               iconColor: Colors.white70,
                               collapsedIconColor: Colors.white70,
                               tilePadding: EdgeInsets.zero,
