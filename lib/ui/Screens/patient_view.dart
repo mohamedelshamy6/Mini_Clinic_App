@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mini_hospital/models/patients_model.dart';
 import 'package:mini_hospital/style/text_style.dart';
+import 'package:mini_hospital/ui/Screens/search.dart';
 import 'package:mini_hospital/view_models/single_patient_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -16,10 +16,10 @@ class PatientView extends StatelessWidget {
     final viewModel = context.read<SinglePatientViewModel>();
     final singlePatient = viewModel.singlePatient;
     return Scaffold(
+      backgroundColor: Colors.greenAccent,
       appBar: AppBar(
         iconTheme: const IconThemeData(color: Colors.black),
-        title:  Text("${singlePatient.name}"),
-
+        title: Text("${singlePatient.name}"),
         actions: [
           IconButton(
               onPressed: () {
@@ -28,7 +28,14 @@ class PatientView extends StatelessWidget {
                   return const HistoryView();
                 }));
               },
-              icon: const Icon(Icons.history))
+              icon: const Icon(Icons.history)), IconButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return const CategorySearch();
+                }));
+              },
+              icon: const Icon(Icons.search)),
         ],
       ),
       body: Padding(
@@ -53,11 +60,11 @@ class PatientView extends StatelessWidget {
                       width: 2,
                     )),
                 padding: const EdgeInsets.all(5),
-                child: const Text(
-                    style: AppTextStyles.w700,
-                    'I have bla bla bla bla bla bla bla bla bla bla bla bla  bla bla bla bla bla bla bla bla bla bla bla bla '),
+                child: Text(
+                    style: AppTextStyles.w700, '${singlePatient.description}'),
               ),
             ),
+            const SizedBox(height: 30),
             Container(
               height: MediaQueryHelper.sizeFromHeight(context, 5),
               width: MediaQueryHelper.sizeFromWidth(context, 1),
@@ -94,7 +101,7 @@ class PatientView extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 10),
-              child: Container(
+              child: SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: addpres.isEmpty
                     ? const Padding(
@@ -119,7 +126,7 @@ class PatientView extends StatelessWidget {
                                 width: 2,
                               )),
                           padding: const EdgeInsets.all(5),
-                          child: Text('${addpres.last}',
+                          child: Text(addpres.last,
                               style: AppTextStyles.w700),
                         ),
                       ),
@@ -188,7 +195,7 @@ class AddPrescription extends StatelessWidget {
                 print(addpres);
               },
               child: const Text(
-                "Save",
+                "Submit",
                 style: AppTextStyles.w700,
               ),
             ),
@@ -214,3 +221,15 @@ class AddPrescription extends StatelessWidget {
 }
 
 List<String> addpres = [];
+List<List> medicines = [
+  ['name', "url"],
+  ['name', "url"],
+  ['name', "url"],
+  ['name', "url"],
+  ['name', "url"],
+  ['name', "url"],
+  ['name', "url"],
+  ['name', "url"],
+  ['name', "url"],
+  ['name', "url"],
+];

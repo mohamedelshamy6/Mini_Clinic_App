@@ -29,7 +29,7 @@ class GoogleLoginCustomButton extends StatelessWidget {
             signInWithGoogle().then((value) => Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const HomeScreen(),
+                  builder: (context) =>  HomeScreen(),
                 )));
           },
           child: Row(

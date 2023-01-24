@@ -67,40 +67,41 @@ List<RecentModel> screen = const <RecentModel>[
       msg: 'Pls take a look at the images.',
       data: '18:31',
       isnew: true),
-  RecentModel(
-      name: "Fullsnack Designers",
-      img: 'person4.png',
-      msg: 'Hello guys, we have discussed about ...',
-      data: '16.04',
-      isnew: false),
-  RecentModel(
-      name: "Lee Williamson",
-      img: 'person1.jpeg',
-      msg: 'Yes, that\'s gonna work, hopefully.',
-      data: '06:12',
-      isnew: false),
-  RecentModel(
-      name: "Ronald Mccoy",
-      img: 'person2.jpeg',
-      msg: ' Thanks dude 😉',
-      data: 'Yesterday',
-      isnew: false),
-  RecentModel(
-      name: "Albert Bell",
-      img: 'person3.jpeg',
-      msg: 'I\'m happy this anime has such grea...',
-      data: 'Yesterday',
-      isnew: false),
-  RecentModel(
-      name: "Darlene Steward",
-      img: 'person4.png',
-      msg: 'Pls take a look at the images.',
-      data: '18:31',
-      isnew: false),
-  RecentModel(
-      name: "Darlene Steward",
-      img: 'person.jpeg',
-      msg: 'Pls take a look at the images.',
-      data: '18:31',
-      isnew: false),
+
+  // RecentModel(
+  //     name: "Fullsnack Designers",
+  //     img: 'person4.png',
+  //     msg: 'Hello guys, we have discussed about ...',
+  //     data: '16.04',
+  //     isnew: false),
+  // RecentModel(
+  //     name: "Lee Williamson",
+  //     img: 'person1.jpeg',
+  //     msg: 'Yes, that\'s gonna work, hopefully.',
+  //     data: '06:12',
+  //     isnew: false),
+  // RecentModel(
+  //     name: "Ronald Mccoy",
+  //     img: 'person2.jpeg',
+  //     msg: ' Thanks dude 😉',
+  //     data: 'Yesterday',
+  //     isnew: false),
+  // RecentModel(
+  //     name: "Albert Bell",
+  //     img: 'person3.jpeg',
+  //     msg: 'I\'m happy this anime has such grea...',
+  //     data: 'Yesterday',
+  //     isnew: false),
+  // RecentModel(
+  //     name: "Darlene Steward",
+  //     img: 'person4.png',
+  //     msg: 'Pls take a look at the images.',
+  //     data: '18:31',
+  //     isnew: false),
+  // RecentModel(
+  //     name: "Darlene Steward",
+  //     img: 'person.jpeg',
+  //     msg: 'Pls take a look at the images.',
+  //     data: '18:31',
+  //     isnew: false),
 ];

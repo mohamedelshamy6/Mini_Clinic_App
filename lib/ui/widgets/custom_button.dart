@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../Screens/home_screen.dart';
+import '../layout.dart';
 
 class CustomLoginButton extends StatelessWidget {
    CustomLoginButton({
@@ -42,7 +43,7 @@ class CustomLoginButton extends StatelessWidget {
                 Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const HomeScreen(),
+                      builder: (context) =>  LayoutScreen(),
                     ));
               });
 

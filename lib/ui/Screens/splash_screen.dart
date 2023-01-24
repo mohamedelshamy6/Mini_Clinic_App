@@ -4,10 +4,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mini_hospital/services/notification_services.dart';
-import 'package:mini_hospital/ui/Screens/home_screen.dart';
 import 'package:mini_hospital/ui/Screens/login.dart';
 import 'package:mini_hospital/view_models/patients_view_model.dart';
 import 'package:provider/provider.dart';
+
+import '../layout.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -31,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
           MaterialPageRoute(
             builder: (context) => FirebaseAuth.instance.currentUser == null
                 ? const Login()
-                : const HomeScreen(),
+                :  LayoutScreen(),
           ));
     });
     super.initState();

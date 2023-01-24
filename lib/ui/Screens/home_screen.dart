@@ -7,10 +7,43 @@ import '../widgets/custom_card.dart';
 import 'chats/screens/view.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
-
+   HomeScreen({Key? key}) : super(key: key);
+  // int _selectedIndex = 0;
+  // static  final List<Widget> _widgetOptions = <Widget>[
+  //   HomeScreen(),
+  //   const ReservationScreen(),
+  //   const RecentChats(),
+  //   //  TextButton.icon(
+  //   //   onPressed: () {
+  //   //     FirebaseAuth.instance.signOut();
+  //   //     //google sign out
+  //   //     user.signOut();
+  //   //     // when signing out .. go to login screen.
+  //   //     Navigator.pushReplacement(
+  //   //       context,
+  //   //       MaterialPageRoute(
+  //   //         builder: (context) => const Login(),
+  //   //       ),
+  //   //     );
+  //   //   },
+  //   //   icon: Icon(
+  //   //     Icons.logout,
+  //   //     color:  Color(0xff1E3163).withOpacity(0.85),
+  //   //   ),
+  //   //   label: Text(
+  //   //     'Sign out',
+  //   //     style: TextStyle(
+  //   //       color:  Color(0xff1E3163).withOpacity(0.85),
+  //   //       fontWeight: FontWeight.bold,
+  //   //       fontSize: 20,
+  //   //     ),
+  //   //   ),
+  //   // ),
+  //
+  // ];
   @override
   Widget build(BuildContext context) {
+
     GoogleSignIn user = GoogleSignIn();
     return Scaffold(
       appBar: AppBar(
@@ -69,6 +102,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
       ),
+
     );
   }
 }
